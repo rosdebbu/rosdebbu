@@ -5,7 +5,7 @@
 
 <p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=rosdebbu" alt="rosdebbu" /></a> </p>
 
-- 👨‍💻 All of my projects are available at [https://rosdebbu.github.io/debbjitttt/](https://rosdebbu.github.io/debbjitttt/)
+- 👨‍💻 All of my projects are available at [https://rosdebbu.github.io/debbjitttt/](https://debjitttt-ross.vercel.app/)
 
 - 💬 Ask me about **Anything related to Frontend Development (React, Vue), UI animations (GSAP), or the basics of data visualization with Python.**
 
