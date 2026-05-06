@@ -1,20 +1,19 @@
 <div align="center">
 
 <!-- Animated Header -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:161b22,100:6e40c9&height=220&section=header&text=Debjit%20(Ross)%20Das&fontSize=52&fontColor=e6edf3&fontAlignY=35&desc=Data%20Science%20%E2%80%A2%20Systems%20Engineering%20%E2%80%A2%20Full-Stack%20Architecture&descSize=16&descColor=8b949e&descAlignY=55&animation=fadeIn" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:161b22,100:6e40c9&height=220&section=header&text=Debjit%20Das&fontSize=52&fontColor=e6edf3&fontAlignY=35&desc=Full-Stack%20Developer%20%E2%80%A2%20UI%20Engineer%20%E2%80%A2%20Open%20Source%20Builder&descSize=16&descColor=8b949e&descAlignY=55&animation=fadeIn" width="100%"/>
 
 <br/>
 
 <!-- Typing Animation -->
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=22&duration=3000&pause=1000&color=6e40c9&center=true&vCenter=true&multiline=true&repeat=true&width=700&height=80&lines=Building+scalable+data+systems+%26+AI+architectures+%F0%9F%9A%80;Actively+seeking+Data+Science+%2F+SWE+Internships+%F0%9F%92%BC" alt="Typing SVG" /></a>
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=22&duration=3000&pause=1000&color=6e40c9&center=true&vCenter=true&multiline=true&repeat=true&width=600&height=80&lines=Building+premium+web+experiences+%F0%9F%9A%80;Actively+seeking+Software+Engineering+Internships+%F0%9F%92%BC" alt="Typing SVG" /></a>
 
 <br/>
 
 <!-- Quick Links -->
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/debjit-das)
-[![LeetCode](https://img.shields.io/badge/-LeetCode-FFA116?style=for-the-badge&logo=LeetCode&logoColor=black)](https://leetcode.com/u/debbjitttt/)
 [![Portfolio](https://img.shields.io/badge/Portfolio-debjitttt--ross.vercel.app-6e40c9?style=for-the-badge&logo=vercel&logoColor=white)](https://debjitttt-ross.vercel.app/)
 [![Email](https://img.shields.io/badge/Email-debjitsince90908-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:debjitsince90908@gmail.com)
+[![Profile Views](https://komarev.com/ghpvc/?username=rosdebbu&label=Profile+Views&color=6e40c9&style=for-the-badge)](https://github.com/rosdebbu)
 
 </div>
 
@@ -23,93 +22,85 @@
 ## 🧑‍💻 About Me
 
 ```yaml
-Name: Debjit (Ross) Das
+Name: Debjit Das
 Location: Tripura, India
-Education: B.Tech Computer Science (Data Science Specialization) @ SRMIST
-Graduation: Expected 2028
-Focus: Data Science, Systems Engineering & Full-Stack Architectures
-Current_Focus: Deep-diving into DSA, optimizing WSL/Docker workflows, and building high-performance APIs
+Focus: Full-Stack Web Development & AI-Powered Applications
+Currently: Building production-grade web apps & seeking SWE internships
+Education: B.Tech Student (Computer Science)
 ```
 
-I am a Computer Science student specializing in Data Science, bridging the gap between complex algorithms and scalable production systems. My engineering work spans academic research in **Graph Neural Networks**, **hardware-software interfacing**, and building **robust full-stack architectures**. I prioritize performance, data integrity, and system scalability over superficial design.
+I'm a **full-stack developer** who obsesses over **pixel-perfect UIs** and **scalable architectures**. I build complete products — from sleek animated frontends to robust database-backed backends. My work spans **e-commerce platforms**, **AI-powered tools**, **hotel booking systems**, and **open-source hardware toolkits**.
 
-> **🟢 Open to Internship Opportunities** — I am actively seeking **Software Engineering / Data Science internships** for upcoming cohorts where I can contribute to complex, data-heavy systems and grow alongside rigorous engineering teams.
-
----
-
-## 🔬 Research & Systems Engineering
-
-<table>
-<tr>
-<td width="50%" valign="top">
-
-### 📊 Graph Neural Networks (GNN) Research
-**Academic Research & Implementation**
-
-Investigating advanced GNN architectures for complex node classification and link prediction. Implemented efficient data pipelines capable of processing and training on 100k+ node graphs with optimized memory management.
-
-`Python` `PyTorch Geometric` `NetworkX` `Pandas` `NumPy`
-
-</td>
-<td width="50%" valign="top">
-
-### 🌊 OpenFOAM Hydrodynamics
-**Computational Fluid Dynamics Simulation**
-
-Configured and executed complex hydrodynamic wave simulations within a Linux environment. Analyzed fluid-structure interactions and visualized massive simulation datasets to understand structural impacts.
-
-`OpenFOAM` `Linux/WSL` `C++` `ParaView` `Bash`
-
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
-
-### ⚡ ESP32 "Smart Stick"
-**IoT & Environmental Monitoring**
-
-Engineered a real-time environmental monitoring hardware system. Interfaced multiple environmental sensors via I2C/SPI protocols on an ESP32 microcontroller, establishing reliable telemetry data streams.
-
-`C/C++` `ESP-IDF` `FreeRTOS` `IoT Protocols`
-
-</td>
-<td width="50%" valign="top">
-
-### ⚙️ [Openzess](https://github.com/rosdebbu/openzess)
-**Autonomous Agent Ecosystem**
-
-Engineered a self-healing agent platform with a FastAPI backend processing background cron jobs via Docker/WSL, capable of handling parallel LLM context trees and automated matrix visualization.
-
-`Python` `FastAPI` `Docker` `PostgreSQL` `React`
-
-</td>
-</tr>
-</table>
+> **🟢 Open to Internship Opportunities** — I'm actively looking for **Software Engineering / Full-Stack / Frontend internships** where I can contribute to real-world products and grow with a team.
 
 ---
 
-## 🌐 Full-Stack Architecture
+## 🏗️ Featured Projects
 
 <table>
 <tr>
-<td width="50%" valign="top">
-
-### 🏨 [GoAnywhere](https://github.com/rosdebbu/DBMS-hotel-booking)
-**DBMS & Hotel Aggregation Platform**
-
-Architected a scalable hotel booking system featuring a robust NextAuth implementation for concurrent user sessions, highly optimized sub-100ms API routes, and a natural language SQL query chatbot interface.
-
-`Next.js 14` `TypeScript` `MySQL` `Prisma` `NextAuth`
-
-</td>
-<td width="50%" valign="top">
+<td width="50%">
 
 ### 🛍️ [IndiGlam](https://github.com/rosdebbu/IndiGlam)
-**High-Performance E-Commerce Engine**
+**Luxury Jewellery E-Commerce Platform**
 
-Built a transactional e-commerce platform capable of handling 10k+ mock product entities with <50ms query times. Implemented robust cart state management and secure Google OAuth integration.
+A premium dark-gold themed e-commerce experience with cinematic GSAP scroll animations, Google OAuth, cart management, and full checkout flow.
 
-`React 19` `TypeScript` `PostgreSQL` `Prisma` `Tailwind`
+`React 19` `TypeScript` `Tailwind CSS` `Prisma` `PostgreSQL` `GSAP` `Framer Motion`
+
+</td>
+<td width="50%">
+
+### 🏨 [GoAnywhere](https://github.com/rosdebbu/DBMS-hotel-booking)
+**Hotel Booking & DBMS Platform**
+
+Full-stack hotel aggregator with secure MySQL-backed auth, multi-step booking, admin panel, and an AI chatbot that queries the database in natural language.
+
+`Next.js 14` `TypeScript` `MySQL` `Tailwind CSS` `NextAuth` `AI Chatbot`
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### ⚙️ [Openzess](https://github.com/rosdebbu/openzess)
+**Open-Source Hardware Toolkit & AI Agent Platform**
+
+A full-stack autonomous agent system with a React dashboard, FastAPI backend, matrix viewer, codebase graph analysis, and automated email reporting via cron jobs.
+
+`TypeScript` `React` `Python` `FastAPI` `PostgreSQL` `WebSocket` `Docker`
+
+</td>
+<td width="50%">
+
+### 🧭 [CampusCompass](https://github.com/rosdebbu/campuscompas.)
+**AI-Powered Campus Navigation**
+
+An intelligent campus navigation platform helping students discover resources, routes, and services across their university — built with modern TypeScript.
+
+`TypeScript` `React` `Vite` `AI Integration`
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 💪 [FitPulse](https://github.com/rosdebbu/FITNESS-APP)
+**Mobile Fitness & Workout App**
+
+A premium mobile-first fitness application with a polished onboarding flow, daily goal setting, and workout tracking — designed to feel native.
+
+`React` `TypeScript` `Vite` `Mobile-First Design`
+
+</td>
+<td width="50%">
+
+### 🎨 [GSAP Portfolio](https://github.com/rosdebbu/famemotion-gsap-portfolio)
+**Cinematic Personal Portfolio**
+
+A scroll-driven, GSAP-animated portfolio showcasing advanced frontend engineering with buttery-smooth transitions and parallax effects.
+
+`React` `TypeScript` `GSAP` `Framer Motion` `Vite`
 
 </td>
 </tr>
@@ -117,54 +108,69 @@ Built a transactional e-commerce platform capable of handling 10k+ mock product 
 
 ---
 
-## 🛠️ Tech Stack & Tools
+## 🛠️ Tech Stack
 
 <div align="center">
 
-### Core Engineering & Data
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
-![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
-![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
-![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
+### Languages
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
-### Backend & Infrastructure
-![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+### Frontend
+![React](https://img.shields.io/badge/React_19-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Next.js](https://img.shields.io/badge/Next.js_14-000000?style=for-the-badge&logo=next.js&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=black)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+
+### Backend & Database
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
+
+### Tools & DevOps
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![Linux](https://img.shields.io/badge/Linux/WSL-FCC624?style=for-the-badge&logo=linux&logoColor=black)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
+![VS Code](https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 
 </div>
 
 ---
 
-## 📈 Engineering Analytics
+## 📊 GitHub Analytics
 
 <div align="center">
-
-<img width="60%" src="https://leetcard.jacoblin.cool/debbjitttt?theme=dark&font=Syne&ext=heatmap" alt="LeetCode Stats"/>
-
-<br/><br/>
 
 <img width="49%" src="https://github-readme-stats.vercel.app/api?username=rosdebbu&show_icons=true&theme=github_dark&hide_border=true&bg_color=0d1117&title_color=6e40c9&icon_color=6e40c9&text_color=c9d1d9&ring_color=6e40c9" alt="GitHub Stats"/>
 <img width="49%" src="https://github-readme-streak-stats.herokuapp.com/?user=rosdebbu&theme=github-dark-blue&hide_border=true&background=0d1117&stroke=30363d&ring=6e40c9&fire=6e40c9&currStreakLabel=6e40c9" alt="GitHub Streak"/>
 
+<br/>
+
+<img width="40%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=rosdebbu&layout=compact&theme=github_dark&hide_border=true&bg_color=0d1117&title_color=6e40c9&text_color=c9d1d9&langs_count=8" alt="Top Languages"/>
+
 </div>
 
 ---
 
-## 🤝 Contact & Profiles
+## 🤝 Let's Connect
 
 <div align="center">
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/debjit-das)
+I'm always open to collaborating on interesting projects, discussing web development, or exploring internship opportunities.
+
 [![Email](https://img.shields.io/badge/debjitsince90908@gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:debjitsince90908@gmail.com)
-[![LeetCode](https://img.shields.io/badge/LeetCode-debbjitttt-FFA116?style=for-the-badge&logo=LeetCode&logoColor=black)](https://leetcode.com/u/debbjitttt/)
-[![CodeChef](https://img.shields.io/badge/CodeChef-crowd__bats__99-5B4638?style=for-the-badge&logo=codechef&logoColor=white)](https://www.codechef.com/users/crowd_bats_99)
-[![Portfolio](https://img.shields.io/badge/Portfolio-Live_Site-6e40c9?style=for-the-badge&logo=googlechrome&logoColor=white)](https://debjitttt-ross.vercel.app/)
+[![Portfolio](https://img.shields.io/badge/My_Portfolio-6e40c9?style=for-the-badge&logo=googlechrome&logoColor=white)](https://debjitttt-ross.vercel.app/)
+[![GitHub](https://img.shields.io/badge/rosdebbu-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/rosdebbu)
+[![Instagram](https://img.shields.io/badge/@thee.devdass__-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/thee.devdass_/)
+[![CodeChef](https://img.shields.io/badge/CodeChef-5B4638?style=for-the-badge&logo=codechef&logoColor=white)](https://www.codechef.com/users/crowd_bats_99)
 
 </div>
 
@@ -173,5 +179,7 @@ Built a transactional e-commerce platform capable of handling 10k+ mock product 
 <div align="center">
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:161b22,100:6e40c9&height=120&section=footer" width="100%"/>
+
+**⭐ If you find my work interesting, consider giving a star to my repos!**
 
 </div>
