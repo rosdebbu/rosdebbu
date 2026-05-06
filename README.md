@@ -6,7 +6,7 @@
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-debjitttt--ross.vercel.app-6e40c9?style=flat-square&logo=vercel&logoColor=white)](https://debjitttt-ross.vercel.app/)
 [![Email](https://img.shields.io/badge/Email-debjitsince90908@gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:debjitsince90908@gmail.com)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Debjit%20Das-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/YOUR_LINKEDIN_USERNAME/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Debjit%20Das-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/debjit-das-6b0452327/)
 [![LeetCode](https://img.shields.io/badge/LeetCode-debbjitttt-FFA116?style=flat-square&logo=leetcode&logoColor=black)](https://leetcode.com/u/debbjitttt/)
 [![CodeChef](https://img.shields.io/badge/CodeChef-crowd__bats__99-5B4638?style=flat-square&logo=codechef&logoColor=white)](https://www.codechef.com/users/crowd_bats_99)
 
