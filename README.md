@@ -33,40 +33,17 @@
 
 ---
 
-### `// 01. FEATURED PROJECTS`
+### `// 01. FEATURED PROJECT`
 
 ```bash
-$ ls -la ~/projects/featured
+$ ls -la ~/projects/openzess
 ```
 
 #### ⚙️ [Openzess](https://github.com/rosdebbu/openzess)
 > **Autonomous Agent Platform & Open Hardware Toolkit**
-- Full-stack system featuring a React dashboard, FastAPI backend, and PostgreSQL (Neon) with connection pooling.
+- Full-stack autonomous agent platform with React dashboard, FastAPI backend, and PostgreSQL (Neon).
 - Real-time WebSocket matrix viewer, automated cron reporting, and codebase knowledge graph analysis.
 - **Tech Stack:** `TypeScript` `React` `Python` `FastAPI` `PostgreSQL` `WebSockets` `Docker`
-
----
-
-#### 🛍️ [IndiGlam](https://github.com/rosdebbu/IndiGlam)
-> **Modern Jewellery E-Commerce Platform**
-- Production-grade e-commerce application with Google OAuth, Prisma ORM, and full cart/checkout flow.
-- Custom responsive dark-gold design system built from scratch for desktop and mobile.
-- **Tech Stack:** `React 19` `TypeScript` `Tailwind CSS` `Prisma` `PostgreSQL` `Vite`
-
----
-
-#### 🏨 [GoAnywhere](https://github.com/rosdebbu/DBMS-hotel-booking)
-> **Smart Hotel Booking Platform (DBMS Project)**
-- End-to-end hotel aggregator featuring secure authentication, multi-step booking, and an admin management dashboard.
-- Integrated AI chatbot capable of querying the MySQL database using natural language.
-- **Tech Stack:** `Next.js 14` `TypeScript` `MySQL` `Tailwind CSS` `NextAuth` `AI Chatbot`
-
----
-
-#### 🧭 [CampusCompass](https://github.com/rosdebbu/campuscompas.)
-> **Campus Navigation & Discovery Platform**
-- University-focused navigation utility helping students find routes, facilities, and campus services seamlessly.
-- **Tech Stack:** `React` `TypeScript` `Vite` `Tailwind CSS`
 
 <br/>
 
