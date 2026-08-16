@@ -20,8 +20,8 @@ I'm **Debjit (Ross) Das** — a **B.Tech CSE (Data Science)** student at **SRMIS
 </p>
 
 <p align="center">
-  <a href="https://debjitttt-ross.vercel.app/" target="_blank">
-    <img src="https://img.shields.io/badge/Portfolio-debjitttt--ross.vercel.app-7952d8?style=for-the-badge&logo=vercel&logoColor=white" alt="Portfolio"/>
+  <a href="https://github.com/vib3withsimran/vib3withsimran" target="_blank">
+    <img src="https://img.shields.io/badge/Portfolio-vib3withsimran-7952d8?style=for-the-badge&logo=github&logoColor=white" alt="Portfolio"/>
   </a>
   &nbsp;
   <a href="https://www.linkedin.com/in/debjit-das-6b0452327/" target="_blank">

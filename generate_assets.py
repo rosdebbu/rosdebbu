@@ -251,7 +251,7 @@ terminal_svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="
     <text y="348">
       <tspan class="code-key">Grid.Portfolio</tspan>
       <tspan class="code-dots"> ............ </tspan>
-      <tspan class="code-val-cyan">debjitttt-ross.vercel.app</tspan>
+      <tspan class="code-val-cyan">github.com/vib3withsimran</tspan>
     </text>
 
     <!-- Row 15 -->
@@ -315,7 +315,7 @@ connect_svg = """<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="26
     <rect width="210" height="120" rx="8" fill="#0D1428" stroke="#223052" stroke-width="1"/>
     <text x="18" y="32" class="link-label">// 01. WEB</text>
     <text x="18" y="60" class="link-val-purple">Portfolio ↗</text>
-    <text x="18" y="85" class="link-desc">debjitttt-ross.vercel.app</text>
+    <text x="18" y="85" class="link-desc">github.com/vib3withsimran</text>
   </g>
 
   <!-- 2. LinkedIn -->
