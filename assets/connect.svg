@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="260" viewBox="0 0 1000 260" role="img" aria-label="connect.sh --links">
+  <title>connect.sh --links</title>
+  <defs>
+    <style>
+      .hdr-title { font-family: Consolas, 'Cascadia Mono', Menlo, monospace; font-size: 13px; fill: #8FA3C8; }
+      .prompt { font-family: Consolas, 'Cascadia Mono', Menlo, monospace; font-size: 13px; fill: #44537A; }
+      .link-label { font-family: Consolas, 'Cascadia Mono', Menlo, monospace; font-size: 12px; fill: #6B7C9E; }
+      .link-val { font-family: Consolas, 'Cascadia Mono', Menlo, monospace; font-size: 13px; fill: #22D3EE; font-weight: bold; }
+      .link-val-purple { font-family: Consolas, 'Cascadia Mono', Menlo, monospace; font-size: 13px; fill: #A78BFA; font-weight: bold; }
+      .link-desc { font-family: Consolas, 'Cascadia Mono', Menlo, monospace; font-size: 11px; fill: #8FA3C8; }
+    </style>
+  </defs>
+
+  <rect x="8" y="8" width="984" height="34" rx="10" fill="#0C1322"/>
+  <rect x="8" y="42" width="984" height="210" fill="#0A101F"/>
+  <rect x="8" y="8" width="984" height="244" rx="10" fill="none" stroke="#223052" stroke-width="1.5"/>
+  <rect x="8" y="42" width="984" height="1" fill="#1E2C4C"/>
+
+  <circle cx="24" cy="25" r="4.5" fill="#FF5F57"/>
+  <circle cx="42" cy="25" r="4.5" fill="#FEBC2E"/>
+  <circle cx="60" cy="25" r="4.5" fill="#28C840"/>
+
+  <text x="500" y="28.5" text-anchor="middle" class="hdr-title">connect.sh --links</text>
+
+  <text x="40" y="72" class="prompt">$ ./connect.sh --links</text>
+
+  <!-- 4 Clickable/Connect Cards -->
+  <!-- 1. Portfolio -->
+  <g transform="translate(40, 95)">
+    <rect width="210" height="120" rx="8" fill="#0D1428" stroke="#223052" stroke-width="1"/>
+    <text x="18" y="32" class="link-label">// 01. WEB</text>
+    <text x="18" y="60" class="link-val-purple">Portfolio ↗</text>
+    <text x="18" y="85" class="link-desc">debjitttt-ross.vercel.app</text>
+  </g>
+
+  <!-- 2. LinkedIn -->
+  <g transform="translate(275, 95)">
+    <rect width="210" height="120" rx="8" fill="#0D1428" stroke="#223052" stroke-width="1"/>
+    <text x="18" y="32" class="link-label">// 02. NETWORK</text>
+    <text x="18" y="60" class="link-val">LinkedIn ↗</text>
+    <text x="18" y="85" class="link-desc">in/debjit-das-6b0452327</text>
+  </g>
+
+  <!-- 3. LeetCode -->
+  <g transform="translate(510, 95)">
+    <rect width="210" height="120" rx="8" fill="#0D1428" stroke="#223052" stroke-width="1"/>
+    <text x="18" y="32" class="link-label">// 03. CODE</text>
+    <text x="18" y="60" class="link-val-purple">LeetCode ↗</text>
+    <text x="18" y="85" class="link-desc">u/debbjitttt</text>
+  </g>
+
+  <!-- 4. Email -->
+  <g transform="translate(745, 95)">
+    <rect width="215" height="120" rx="8" fill="#0D1428" stroke="#223052" stroke-width="1"/>
+    <text x="18" y="32" class="link-label">// 04. MAIL</text>
+    <text x="18" y="60" class="link-val">Email ↗</text>
+    <text x="18" y="85" class="link-desc">debjitsince90908@gmail</text>
+  </g>
+</svg>

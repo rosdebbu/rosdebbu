@@ -1,16 +1,25 @@
-<div align="center">
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/terminal.svg">
+    <img src="./assets/terminal.svg" width="100%" alt="Debjit (Ross) Das — Full Stack Developer — animated profile banner">
+  </picture>
+</p>
 
-  <!-- Terminal System Info Header -->
-  <img src="./assets/terminal.svg" width="100%" alt="Debjit's System Terminal"/>
+# Hi there! 👋
 
-  <br/><br/>
+I'm **Debjit (Ross) Das** — a **B.Tech CSE (Data Science)** student at **SRMIST** and full-stack developer building production systems and researching Graph Neural Networks (GNNs). Currently building, learning, and shipping. 🚀
 
-  <!-- Status / Highlights Cards -->
-  <img src="./assets/status-cards.svg" width="100%" alt="Status Metrics"/>
+<p align="center">
+  <a href="https://git.io/typing-svg">
+    <img src="https://readme-typing-svg.demolab.com/?lines=Full+Stack+Developer;Systems+%26+Data+Science;GNN+Researcher;Building+%26+Shipping&font=Fira+Code&weight=500&size=22&duration=2800&pause=900&color=22D3EE&center=true&vCenter=true&width=550&height=55" alt="Typing SVG: Full Stack Developer, Systems & Data Science, GNN Researcher, Building & Shipping">
+  </a>
+</p>
 
-  <br/><br/>
+<p align="center">
+  <img src="./assets/connect.svg" width="100%" alt="connect.sh — links">
+</p>
 
-  <!-- Quick Links & Contact Pills -->
+<p align="center">
   <a href="https://debjitttt-ross.vercel.app/" target="_blank">
     <img src="https://img.shields.io/badge/Portfolio-debjitttt--ross.vercel.app-7952d8?style=for-the-badge&logo=vercel&logoColor=white" alt="Portfolio"/>
   </a>
@@ -26,34 +35,27 @@
   <a href="mailto:debjitsince90908@gmail.com">
     <img src="https://img.shields.io/badge/Email-debjitsince90908@gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/>
   </a>
-
-</div>
-
-<br/>
-
----
-
-### `// 01. FEATURED PROJECT`
-
-```bash
-$ ls -la ~/projects/openzess
-```
-
-#### ⚙️ [Openzess](https://github.com/rosdebbu/openzess)
-> **Autonomous Agent Platform & Open Hardware Toolkit**
-- Full-stack autonomous agent platform with React dashboard, FastAPI backend, and PostgreSQL (Neon).
-- Real-time WebSocket matrix viewer, automated cron reporting, and codebase knowledge graph analysis.
-- **Tech Stack:** `TypeScript` `React` `Python` `FastAPI` `PostgreSQL` `WebSockets` `Docker`
+</p>
 
 <br/>
 
----
+<div align="center"><h3>Currently Building</h3></div>
 
-### `// 02. RESEARCH & SYSTEMS`
+### ⚙️ [Openzess](https://github.com/rosdebbu/openzess)
+*Autonomous Agent Platform & Open Hardware Toolkit — a production-grade full-stack system with a React dashboard, FastAPI backend, PostgreSQL (Neon) with connection pooling, WebSocket matrix viewer, automated cron reporting, and codebase knowledge graph analysis.*
 
-```bash
-$ cat ~/research/active.md
-```
+<p align="left">
+  <img src="https://img.shields.io/badge/TypeScript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/>
+  <img src="https://img.shields.io/badge/React_19-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" alt="React"/>
+  <img src="https://img.shields.io/badge/Python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" alt="Python"/>
+  <img src="https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi" alt="FastAPI"/>
+  <img src="https://img.shields.io/badge/PostgreSQL-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL"/>
+  <img src="https://img.shields.io/badge/Docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"/>
+</p>
+
+<br/>
+
+<div align="center"><h3>Research & Systems</h3></div>
 
 - 📄 **Graph Neural Networks (GNN)** — Academic research into spectral graph theory, message-passing neural networks, and graph-based representations for structured data.
 - 🦯 **ESP32 Smart Sensing Prototype** — Embedded hardware/software system for real-time environmental monitoring with sensor fusion and wireless telemetry.
@@ -61,26 +63,6 @@ $ cat ~/research/active.md
 
 <br/>
 
----
-
-### `// 03. GET IN TOUCH`
-
-```bash
-$ echo "Always open for collaborations, research discussions, and internship opportunities!"
-```
-
 <div align="center">
-
-[![Portfolio](https://img.shields.io/badge/Portfolio-7952d8?style=flat-square&logo=vercel&logoColor=white)](https://debjitttt-ross.vercel.app/)
-&nbsp;&nbsp;
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/debjit-das-6b0452327/)
-&nbsp;&nbsp;
-[![LeetCode](https://img.shields.io/badge/LeetCode-FFA116?style=flat-square&logo=leetcode&logoColor=black)](https://leetcode.com/u/debbjitttt/)
-&nbsp;&nbsp;
-[![Email](https://img.shields.io/badge/Email-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:debjitsince90908@gmail.com)
-
-<br/>
-
-<sub>⚡ Crafted with code &amp; care by **Debjit (Ross) Das** • 2026</sub>
-
+  <sub>⚡ Designed with terminal aesthetics • **Debjit (Ross) Das** • 2026</sub>
 </div>
