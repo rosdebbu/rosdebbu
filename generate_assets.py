@@ -106,244 +106,92 @@ full_path = "".join(path_chunks)
 # -------------------------------------------------------------
 # 2. Build assets/terminal.svg
 # -------------------------------------------------------------
-terminal_svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="610" viewBox="0 0 1180 610" role="img" aria-label="Debjit Das - full stack developer - animated profile banner">
+FONT = "Consolas, 'Cascadia Mono', Menlo, monospace"
+
+# (key, value, value class) shown on the right-hand side of the banner
+rows = [
+    ("education", "B.Tech CSE (Data Science) '28 · SRMIST", "val"),
+    ("stack", "TypeScript · Python · C++ · SQL", "val"),
+    ("building", "React · FastAPI · PostgreSQL · Docker", "val"),
+    ("research", "Graph Neural Networks (GNN)", "cyan"),
+    ("status", "Building • Learning • Shipping", "purple"),
+]
+
+row_svg = []
+for i, (key, value, cls) in enumerate(rows):
+    y = 214 + i * 36
+    row_svg.append(
+        f'  <g class="row" style="animation-delay:{0.25 + i * 0.18:.2f}s">\n'
+        f'    <text x="340" y="{y}" class="key">{key}</text>\n'
+        f'    <text x="470" y="{y}" class="{cls}">{value}</text>\n'
+        f'  </g>'
+    )
+rows_markup = "\n".join(row_svg)
+
+terminal_svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="380" viewBox="0 0 1000 380" role="img" aria-label="Debjit Das - full stack developer - animated profile banner">
   <title>Debjit (Ross) Das — profile.sh --live</title>
   <defs>
     <linearGradient id="pillGrad" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#A78BFA"/>
       <stop offset="100%" stop-color="#22D3EE"/>
     </linearGradient>
+    <linearGradient id="nameGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#A78BFA"/>
+      <stop offset="100%" stop-color="#22D3EE"/>
+    </linearGradient>
     <style>
-      .term-title {{ font-family: Consolas, 'Cascadia Mono', Menlo, monospace; font-size: 13px; fill: #8FA3C8; }}
-      .term-section {{ font-family: Consolas, 'Cascadia Mono', Menlo, monospace; font-size: 12px; letter-spacing: 3px; font-weight: bold; }}
-      .code-key {{ font-family: Consolas, 'Cascadia Mono', Menlo, monospace; font-size: 12px; fill: #6B7C9E; }}
-      .code-dots {{ font-family: Consolas, 'Cascadia Mono', Menlo, monospace; font-size: 12px; fill: #223052; }}
-      .code-val {{ font-family: Consolas, 'Cascadia Mono', Menlo, monospace; font-size: 12px; fill: #E2E8F0; }}
-      .code-val-cyan {{ font-family: Consolas, 'Cascadia Mono', Menlo, monospace; font-size: 12px; fill: #22D3EE; font-weight: bold; }}
-      .code-val-purple {{ font-family: Consolas, 'Cascadia Mono', Menlo, monospace; font-size: 12px; fill: #A78BFA; font-weight: bold; }}
-      .prompt-line {{ font-family: Consolas, 'Cascadia Mono', Menlo, monospace; font-size: 12.5px; fill: #44537A; }}
+      text {{ font-family: {FONT}; }}
+      .term-title {{ font-size: 13px; fill: #8FA3C8; }}
+      .section {{ font-size: 12px; letter-spacing: 3px; font-weight: bold; }}
+      .name {{ font-size: 32px; font-weight: bold; fill: url(#nameGrad); }}
+      .role {{ font-size: 17px; fill: #E2E8F0; }}
+      .key {{ font-size: 15px; fill: #6B7C9E; }}
+      .val {{ font-size: 15px; fill: #E2E8F0; }}
+      .cyan {{ font-size: 15px; fill: #22D3EE; font-weight: bold; }}
+      .purple {{ font-size: 15px; fill: #A78BFA; font-weight: bold; }}
+      .prompt {{ font-size: 14px; fill: #44537A; }}
       .cursor-blink {{ fill: #22D3EE; animation: cursorBlink 1s infinite steps(2, start); }}
+      .row {{ opacity: 0; animation: fadeIn 0.5s ease-out forwards; }}
       @keyframes cursorBlink {{ 0%, 100% {{ opacity: 1; }} 50% {{ opacity: 0; }} }}
+      @keyframes fadeIn {{ from {{ opacity: 0; }} to {{ opacity: 1; }} }}
     </style>
   </defs>
 
   <!-- Terminal Window -->
-  <rect x="8" y="8" width="1164" height="34" rx="10" fill="#0C1322"/>
-  <rect x="8" y="42" width="1164" height="560" fill="#0A101F"/>
-  <rect x="8" y="8" width="1164" height="594" rx="10" fill="none" stroke="#223052" stroke-width="1.5"/>
-  <rect x="8" y="42" width="1164" height="1" fill="#1E2C4C"/>
+  <rect x="8" y="8" width="984" height="34" rx="10" fill="#0C1322"/>
+  <rect x="8" y="42" width="984" height="330" fill="#0A101F"/>
+  <rect x="8" y="8" width="984" height="364" rx="10" fill="none" stroke="#223052" stroke-width="1.5"/>
+  <rect x="8" y="42" width="984" height="1" fill="#1E2C4C"/>
 
   <!-- Window Controls -->
   <circle cx="24" cy="25" r="4.5" fill="#FF5F57"/>
   <circle cx="42" cy="25" r="4.5" fill="#FEBC2E"/>
   <circle cx="60" cy="25" r="4.5" fill="#28C840"/>
 
-  <!-- Window Title -->
-  <text x="590" y="28.5" text-anchor="middle" class="term-title">rosdebbu / README.md --live</text>
+  <text x="500" y="28.5" text-anchor="middle" class="term-title">rosdebbu / README.md --live</text>
 
   <!-- Top-Right User Pill -->
-  <rect x="1010" y="14" width="145" height="22" rx="11" fill="url(#pillGrad)"/>
-  <text x="1082" y="29" text-anchor="middle" font-family="Consolas, monospace" font-size="11" font-weight="bold" fill="#0A101F">@rosdebbu</text>
+  <rect x="835" y="14" width="145" height="22" rx="11" fill="url(#pillGrad)"/>
+  <text x="907" y="29" text-anchor="middle" font-size="11" font-weight="bold" fill="#0A101F">@rosdebbu</text>
 
-  <!-- Left: VISUAL.MAP -->
-  <text x="40" y="68" class="term-section" fill="#A78BFA">VISUAL.MAP</text>
-  <rect x="40" y="80" width="450" height="490" rx="6" fill="#0D1428" stroke="#A78BFA" stroke-opacity="0.35"/>
-  <g transform="translate(55, 95) scale(1.5)" shape-rendering="crispEdges" fill="#A78BFA">
+  <!-- Left: portrait -->
+  <rect x="32" y="62" width="270" height="290" rx="6" fill="#0D1428" stroke="#A78BFA" stroke-opacity="0.35"/>
+  <g transform="translate(41, 67) scale(0.9)" shape-rendering="crispEdges" fill="#A78BFA">
     <path d="{full_path}"/>
   </g>
 
-  <!-- Right: SYSTEM.INFO -->
-  <text x="525" y="68" class="term-section" fill="#22D3EE">SYSTEM.INFO</text>
+  <!-- Right: identity -->
+  <text x="340" y="82" class="section" fill="#22D3EE">SYSTEM.INFO</text>
+  <text x="340" y="126" class="name">Debjit (Ross) Das</text>
+  <text x="340" y="156" class="role">Full Stack Developer &amp; GNN Researcher</text>
+  <rect x="340" y="176" width="620" height="1" fill="#1E2C4C"/>
 
-  <g transform="translate(525, 105)">
-    <!-- Row 1 -->
-    <text y="0">
-      <tspan class="code-key">Subject</tspan>
-      <tspan class="code-dots"> ................... </tspan>
-      <tspan class="code-val-purple">Debjit (Ross) Das</tspan>
-    </text>
+{rows_markup}
 
-    <!-- Row 2 -->
-    <text y="26">
-      <tspan class="code-key">Role</tspan>
-      <tspan class="code-dots"> ...................... </tspan>
-      <tspan class="code-val">Full Stack Developer &amp; Systems</tspan>
-    </text>
-
-    <!-- Row 3 -->
-    <text y="52">
-      <tspan class="code-key">Origin</tspan>
-      <tspan class="code-dots"> .................... </tspan>
-      <tspan class="code-val">SRMIST, India</tspan>
-    </text>
-
-    <!-- Row 4 -->
-    <text y="78">
-      <tspan class="code-key">Education</tspan>
-      <tspan class="code-dots"> ................. </tspan>
-      <tspan class="code-val">B.Tech CSE (Data Science) '28</tspan>
-    </text>
-
-    <!-- Row 5 -->
-    <text y="104">
-      <tspan class="code-key">Status</tspan>
-      <tspan class="code-dots"> .................... </tspan>
-      <tspan class="code-val-cyan">Building • Learning • Shipping</tspan>
-    </text>
-
-    <!-- Row 6 -->
-    <text y="130">
-      <tspan class="code-key">Toolchain</tspan>
-      <tspan class="code-dots"> ................. </tspan>
-      <tspan class="code-val">TypeScript • Python • C++ • Docker • Linux</tspan>
-    </text>
-
-    <!-- Row 7 -->
-    <text y="156">
-      <tspan class="code-key">Core.Lang</tspan>
-      <tspan class="code-dots"> ................. </tspan>
-      <tspan class="code-val">TypeScript • Python • C/C++ • SQL • Bash</tspan>
-    </text>
-
-    <!-- Row 8 -->
-    <text y="182">
-      <tspan class="code-key">Core.Frontend</tspan>
-      <tspan class="code-dots"> ............. </tspan>
-      <tspan class="code-val">React 19 • Next.js 14 • Tailwind CSS • Vite</tspan>
-    </text>
-
-    <!-- Row 9 -->
-    <text y="208">
-      <tspan class="code-key">Core.Backend</tspan>
-      <tspan class="code-dots"> .............. </tspan>
-      <tspan class="code-val">FastAPI • Node.js • Express • WebSockets</tspan>
-    </text>
-
-    <!-- Row 10 -->
-    <text y="234">
-      <tspan class="code-key">Core.Database</tspan>
-      <tspan class="code-dots"> ............. </tspan>
-      <tspan class="code-val">PostgreSQL (Neon) • MySQL • Prisma ORM</tspan>
-    </text>
-
-    <!-- Row 11 -->
-    <text y="260">
-      <tspan class="code-key">Core.AI/ML</tspan>
-      <tspan class="code-dots"> ................ </tspan>
-      <tspan class="code-val-cyan">PyTorch • Graph Neural Networks (GNN)</tspan>
-    </text>
-
-    <!-- Row 12 -->
-    <text y="286">
-      <tspan class="code-key">Core.Infra</tspan>
-      <tspan class="code-dots"> ................ </tspan>
-      <tspan class="code-val">Docker • WSL2 • Linux • Vercel • Render</tspan>
-    </text>
-
-    <!-- Row 13 -->
-    <text y="322">
-      <tspan class="code-key">Grid.Mail</tspan>
-      <tspan class="code-dots"> ................. </tspan>
-      <tspan class="code-val">debjitsince90908@gmail.com</tspan>
-    </text>
-
-    <!-- Row 14 -->
-    <text y="348">
-      <tspan class="code-key">Grid.Portfolio</tspan>
-      <tspan class="code-dots"> ............ </tspan>
-      <tspan class="code-val-cyan">github.com/vib3withsimran</tspan>
-    </text>
-
-    <!-- Row 15 -->
-    <text y="374">
-      <tspan class="code-key">Grid.LinkedIn</tspan>
-      <tspan class="code-dots"> ............. </tspan>
-      <tspan class="code-val">linkedin.com/in/debjit-das-6b0452327</tspan>
-    </text>
-
-    <!-- Row 16 -->
-    <text y="400">
-      <tspan class="code-key">Grid.GitHub</tspan>
-      <tspan class="code-dots"> ............... </tspan>
-      <tspan class="code-val-purple">github.com/rosdebbu</tspan>
-    </text>
-
-    <!-- Bottom Prompt Line -->
-    <text y="445" class="prompt-line">
-      $ ./profile.sh --live <tspan class="cursor-blink">█</tspan>
-    </text>
-  </g>
+  <text x="340" y="346" class="prompt">$ ./profile.sh --live <tspan class="cursor-blink">█</tspan></text>
 </svg>"""
 
 with open(r"assets\terminal.svg", "w", encoding="utf-8") as f:
     f.write(terminal_svg)
 
 print("assets/terminal.svg successfully created!")
-
-# -------------------------------------------------------------
-# 3. Build assets/connect.svg
-# -------------------------------------------------------------
-connect_svg = """<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="260" viewBox="0 0 1000 260" role="img" aria-label="connect.sh --links">
-  <title>connect.sh --links</title>
-  <defs>
-    <style>
-      .hdr-title { font-family: Consolas, 'Cascadia Mono', Menlo, monospace; font-size: 13px; fill: #8FA3C8; }
-      .prompt { font-family: Consolas, 'Cascadia Mono', Menlo, monospace; font-size: 13px; fill: #44537A; }
-      .link-label { font-family: Consolas, 'Cascadia Mono', Menlo, monospace; font-size: 12px; fill: #6B7C9E; }
-      .link-val { font-family: Consolas, 'Cascadia Mono', Menlo, monospace; font-size: 13px; fill: #22D3EE; font-weight: bold; }
-      .link-val-purple { font-family: Consolas, 'Cascadia Mono', Menlo, monospace; font-size: 13px; fill: #A78BFA; font-weight: bold; }
-      .link-desc { font-family: Consolas, 'Cascadia Mono', Menlo, monospace; font-size: 11px; fill: #8FA3C8; }
-    </style>
-  </defs>
-
-  <rect x="8" y="8" width="984" height="34" rx="10" fill="#0C1322"/>
-  <rect x="8" y="42" width="984" height="210" fill="#0A101F"/>
-  <rect x="8" y="8" width="984" height="244" rx="10" fill="none" stroke="#223052" stroke-width="1.5"/>
-  <rect x="8" y="42" width="984" height="1" fill="#1E2C4C"/>
-
-  <circle cx="24" cy="25" r="4.5" fill="#FF5F57"/>
-  <circle cx="42" cy="25" r="4.5" fill="#FEBC2E"/>
-  <circle cx="60" cy="25" r="4.5" fill="#28C840"/>
-
-  <text x="500" y="28.5" text-anchor="middle" class="hdr-title">connect.sh --links</text>
-
-  <text x="40" y="72" class="prompt">$ ./connect.sh --links</text>
-
-  <!-- 4 Clickable/Connect Cards -->
-  <!-- 1. Portfolio -->
-  <g transform="translate(40, 95)">
-    <rect width="210" height="120" rx="8" fill="#0D1428" stroke="#223052" stroke-width="1"/>
-    <text x="18" y="32" class="link-label">// 01. WEB</text>
-    <text x="18" y="60" class="link-val-purple">Portfolio ↗</text>
-    <text x="18" y="85" class="link-desc">github.com/vib3withsimran</text>
-  </g>
-
-  <!-- 2. LinkedIn -->
-  <g transform="translate(275, 95)">
-    <rect width="210" height="120" rx="8" fill="#0D1428" stroke="#223052" stroke-width="1"/>
-    <text x="18" y="32" class="link-label">// 02. NETWORK</text>
-    <text x="18" y="60" class="link-val">LinkedIn ↗</text>
-    <text x="18" y="85" class="link-desc">in/debjit-das-6b0452327</text>
-  </g>
-
-  <!-- 3. LeetCode -->
-  <g transform="translate(510, 95)">
-    <rect width="210" height="120" rx="8" fill="#0D1428" stroke="#223052" stroke-width="1"/>
-    <text x="18" y="32" class="link-label">// 03. CODE</text>
-    <text x="18" y="60" class="link-val-purple">LeetCode ↗</text>
-    <text x="18" y="85" class="link-desc">u/debbjitttt</text>
-  </g>
-
-  <!-- 4. Email -->
-  <g transform="translate(745, 95)">
-    <rect width="215" height="120" rx="8" fill="#0D1428" stroke="#223052" stroke-width="1"/>
-    <text x="18" y="32" class="link-label">// 04. MAIL</text>
-    <text x="18" y="60" class="link-val">Email ↗</text>
-    <text x="18" y="85" class="link-desc">debjitsince90908@gmail</text>
-  </g>
-</svg>"""
-
-with open(r"assets\connect.svg", "w", encoding="utf-8") as f:
-    f.write(connect_svg)
-
-print("assets/connect.svg successfully created!")
