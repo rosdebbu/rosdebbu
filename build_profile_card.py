@@ -1,10 +1,138 @@
 import os
 import html
+import colorsys
 import subprocess
+
+import numpy as np
+from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageOps
+
+# -------------------------------------------------------------
+# Portrait: turn assets/profile.jpg into a coloured ASCII portrait
+# -------------------------------------------------------------
+PHOTO = os.path.join("assets", "profile.jpg")
+CROP = (860, 300, 1410, 985)   # head, neck and shoulders, in original photo pixels
+COLS = 104                      # characters per row
+CELL_W, CELL_H = 4.0, 8.0       # px per character cell (font-size 7px)
+RAMP = " .`'^\",:;Il!i><~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"  # light -> dense
+PALETTE_SIZE = 48
+
+
+def load_portrait():
+    """Return (rows, cells) where each cell is (density 0..1, (r, g, b))."""
+    img = Image.open(PHOTO).convert("RGB").crop(CROP)
+    w, h = img.size
+    rows = round(COLS * (h / w) * (CELL_W / CELL_H))
+
+    # work at 4x the target grid, then average down so each char gets real detail
+    big = img.resize((COLS * 4, rows * 4), Image.LANCZOS)
+
+    # background mask: the foliage is green/yellow and saturated, skin/hair/shirt are not
+    hsv = np.asarray(big.convert("HSV"), dtype=float)
+    hue, sat, val = hsv[..., 0] * 360 / 255, hsv[..., 1] / 255, hsv[..., 2] / 255
+    foliage = (hue > 44) & (hue < 180) & (sat > 0.14) & (val > 0.10)
+    mask = Image.fromarray(np.where(foliage, 0, 255).astype("uint8"))
+    # drop specks, then keep only the region connected to the face
+    mask = mask.filter(ImageFilter.MinFilter(5)).filter(ImageFilter.MaxFilter(5))
+    mask = mask.filter(ImageFilter.MedianFilter(9))
+    ImageDraw.floodfill(mask, (mask.width // 2, int(mask.height * 0.5)), 128, thresh=0)
+    mask = Image.fromarray(np.where(np.asarray(mask) == 128, 255, 0).astype("uint8"))
+    mask = mask.filter(ImageFilter.GaussianBlur(2))
+    cover = np.asarray(mask.resize((COLS, rows), Image.BOX), dtype=float) / 255.0
+    cover = np.clip((cover - 0.25) / 0.5, 0, 1)
+    # cells that are mostly leaf pixels fade out even if they touch the hair
+    leaf = foliage.reshape(rows, 4, COLS, 4).mean(axis=(1, 3))
+    cover *= 1 - np.clip((leaf - 0.08) / 0.30, 0, 1)
+    cover = cover * cover * (3 - 2 * cover)  # smoothstep
+
+    big = ImageEnhance.Color(big).enhance(1.05)
+    big = big.filter(ImageFilter.UnsharpMask(radius=3, percent=140, threshold=2))
+    small = big.resize((COLS, rows), Image.BOX)
+
+    # stretch luminance over the subject only, so eyes, nose and moustache stand out
+    lum = np.asarray(small.convert("L"), dtype=float) / 255.0
+    lo, hi = np.percentile(lum[cover > 0.5], [2, 98])
+    lum = np.clip((lum - lo) / (hi - lo), 0, 1)
+
+    # unsharp-mask the cell grid so facial features separate from the skin
+    lum_img = Image.fromarray((lum * 255).astype("uint8"))
+    blur = np.asarray(lum_img.filter(ImageFilter.GaussianBlur(4)), dtype=float) / 255.0
+    lum = np.clip(lum + 0.9 * (lum - blur), 0, 1)
+
+    cells = []
+    for y in range(rows):
+        row = []
+        for x in range(COLS):
+            # gentle fade at the bottom edge so the crop doesn't end abruptly
+            edge = min(1.0, (rows - y) / 6.0)
+            dx, dy = (x + 0.5) / COLS - 0.5, (y + 0.5) / rows - 0.45
+            oval = np.exp(-((dx / 0.72) ** 2 + (dy / 0.95) ** 2) ** 2)
+            row.append((lum[y, x], small.getpixel((x, y)), cover[y, x] * edge * oval))
+        cells.append(row)
+    return rows, cells
+
+
+ROWS, CELLS = load_portrait()
+
+
+def build_ascii(is_dark):
+    """Coloured <text> rows plus the CSS classes that colour them."""
+    # per-cell colour tuned for the background
+    colours = Image.new("RGB", (COLS, ROWS))
+    dens = []
+    for y in range(ROWS):
+        drow = []
+        for x in range(COLS):
+            lum, (r, g, b), fade = CELLS[y][x]
+            h, s, v = colorsys.rgb_to_hsv(r / 255, g / 255, b / 255)
+            if is_dark:
+                v = 0.78 + 0.22 * v
+                d = (0.12 + 0.88 * lum ** 0.9) * fade
+                s *= 0.6
+            else:
+                v = 0.12 + 0.48 * v
+                d = (0.1 + 0.9 * (1 - lum) ** 0.9) * fade
+                s *= 0.85
+            colours.putpixel((x, y), tuple(int(c * 255) for c in colorsys.hsv_to_rgb(h, min(1, s), v)))
+            drow.append(d)
+        dens.append(drow)
+
+    quant = colours.quantize(colors=PALETTE_SIZE, method=Image.MEDIANCUT)
+    pal = quant.getpalette()
+    css = "\n".join(
+        f".c{i}{{fill:#{pal[i*3]:02x}{pal[i*3+1]:02x}{pal[i*3+2]:02x};}}" for i in range(PALETTE_SIZE)
+    )
+
+    top = (548 - ROWS * CELL_H) / 2 + CELL_H - 2
+    width = COLS * CELL_W
+    lines = []
+    for y in range(ROWS):
+        runs = []
+        cur_cls, cur_txt = None, ""
+        for x in range(COLS):
+            idx = min(len(RAMP) - 1, int(dens[y][x] * (len(RAMP) - 1) + 0.5))
+            ch = RAMP[idx]
+            cls = quant.getpixel((x, y))
+            if ch == " " or cls == cur_cls:
+                cur_txt += ch
+                continue
+            if cur_cls is not None:
+                runs.append((cur_cls, cur_txt))
+            cur_cls, cur_txt = cls, ch
+        if cur_cls is not None:
+            runs.append((cur_cls, cur_txt))
+        elif cur_txt:
+            runs.append((0, cur_txt))
+        spans = "".join(f'<tspan class="c{c}">{html.escape(t)}</tspan>' for c, t in runs)
+        lines.append(
+            f'<text x="15" y="{top + y * CELL_H:.1f}" font-size="7px" '
+            f'textLength="{width:.0f}" lengthAdjust="spacing">{spans}</text>'
+        )
+    return css, "\n".join(lines)
+
 
 def create_svg(mode="dark"):
     is_dark = (mode == "dark")
-    
+
     bg_color = "#161b22" if is_dark else "#f6f8fa"
     border_color = "#30363d" if is_dark else "#d0d7de"
     text_color = "#c9d1d9" if is_dark else "#24292f"
@@ -13,44 +141,9 @@ def create_svg(mode="dark"):
     dot_color = "#616e7f" if is_dark else "#8c959f"
     add_color = "#3fb950" if is_dark else "#1a7f37"
     del_color = "#f85149" if is_dark else "#cf222e"
-    
-    # 25 lines of Debjit's custom ASCII portrait
-    ascii_lines = [
-        "           g@M%@%%@N%Nw,,                   ",
-        "        ,M*|`||*%gNM=]mM%g||%N,             ",
-        "       p!``  '! |''` '''|||jhlj%w           ",
-        "     ,@L `    ,,        ''!`|j%M]%M         ",
-        "    ]j'` .,wp@pw,    `.     ''''|%Wg        ",
-        "  /{||]@@@@@@@@@pp.             |||||       ",
-        " '` ']@@@@@@@@@@@@@@p     , ,'''` `         ",
-        "  , :]%%@@@@@%%%%%%k%h '*||mkr   *|%h       ",
-        "  '  j%M` (@@)   (@@)  ~nrn=|i  j%%k%       ",
-        "   !  jrr*^`   ..        `\"!  L'k%%%%,      ",
-        "    j  lp;,.   /\\      ,;\\nmy \" j%%k%%      ",
-        "   i r @@@@   w==w   `^****M*,p j%%%%%      ",
-        "   | ]@@@@H  {====}  ,jmgpmb% [__]%%%H      ",
-        "    ;;%%%%%k%@[\\__/.;j%%k|%k%%',[  ]%%%     ",
-        "     H|%%k%%%j%k||,;;j;!!'|%ij}===@%%H      ",
-        "     \"djjmkL,\"]][,,,,wwxw;|#kjk` %%%%M      ",
-        "       %;%km%%%%M%M|%%jkkii|||[   %%%%      ",
-        "        kjj%%kkkl|!||||||j|||\"    %%%%      ",
-        "         |jm%H@@@b%%kkmk%i|!,[   '%%kH      ",
-        "         @p|j%%%%jkk|||j*'`;j[    |k%h      ",
-        "        ]@@@g|'''`'''  ` ,;j%k              ",
-        "        @@@@ [KEEP YOUR] ;jj%%k%            ",
-        "       @@@@@@@@%%kgki!|jjjj%k%@ .           ",
-        ". ^['' %@@@@HH%b%k{illljkjj%%%% ; `,.       ",
-        "=[' ` . %HH%%%%%H@gkilljjj%kk%\".   `'i      "
-    ]
-    
-    # ASCII text elements
-    ascii_tspans = []
-    for i, line in enumerate(ascii_lines):
-        y = 30 + i * 20
-        safe_line = html.escape(line)
-        ascii_tspans.append(f'<tspan x="15" y="{y}">{safe_line}</tspan>')
-    ascii_block = "\n".join(ascii_tspans)
-    
+
+    ascii_css, ascii_block = build_ascii(is_dark)
+
     def build_kv(y, key, val, target_cols=58):
         # Target total columns on right side = target_cols
         # Structure: ". " (2) + key + ": " (2) + dots + val
@@ -60,7 +153,7 @@ def create_svg(mode="dark"):
         dots = " " + ("." * (dot_count - 2)) + " "
         safe_key = html.escape(key)
         safe_val = html.escape(val)
-        return (f'<tspan x="390" y="{y}" class="cc">. </tspan>'
+        return (f'<tspan x="470" y="{y}" class="cc">. </tspan>'
                 f'<tspan class="key">{safe_key}</tspan>:'
                 f'<tspan class="cc">{dots}</tspan>'
                 f'<tspan class="value">{safe_val}</tspan>')
@@ -69,7 +162,7 @@ def create_svg(mode="dark"):
         rem = target_cols - len(title) - 1
         dashes = " " + (char * max(4, rem))
         safe_title = html.escape(title)
-        return f'<tspan x="390" y="{y}">{safe_title}</tspan><tspan class="cc">{dashes}</tspan>'
+        return f'<tspan x="470" y="{y}">{safe_title}</tspan><tspan class="cc">{dashes}</tspan>'
 
     right_tspans = [
         # 0 (y=30)
@@ -85,7 +178,7 @@ def create_svg(mode="dark"):
         # 5 (y=130)
         build_kv(130, "IDE", "VS Code, Neovim, Cursor"),
         # 6 (y=150)
-        '<tspan x="390" y="150" class="cc">. </tspan>',
+        '<tspan x="470" y="150" class="cc">. </tspan>',
         # 7 (y=170)
         build_kv(170, "Languages.Programming", "TypeScript, Python, C++, Bash"),
         # 8 (y=190)
@@ -93,7 +186,7 @@ def create_svg(mode="dark"):
         # 9 (y=210)
         build_kv(210, "Languages.Real", "English, Bengali, Hindi"),
         # 10 (y=230)
-        '<tspan x="390" y="230" class="cc">. </tspan>',
+        '<tspan x="470" y="230" class="cc">. </tspan>',
         # 11 (y=250)
         build_kv(250, "Frameworks.FullStack", "React 19, Next.js, FastAPI, Node.js"),
         # 12 (y=270)
@@ -113,20 +206,20 @@ def create_svg(mode="dark"):
         # 19 (y=410)
         build_kv(410, "GitHub", "rosdebbu"),
         # 20 (y=430)
-        '<tspan x="390" y="430" class="cc">. </tspan>',
+        '<tspan x="470" y="430" class="cc">. </tspan>',
         # 21 (y=450)
         build_header(450, "- GitHub Stats", "-"),
         # 22 (y=470)
-        f'<tspan x="390" y="470" class="cc">. </tspan><tspan class="key">Repos</tspan>:<tspan class="cc"> .... </tspan><tspan class="value">48</tspan> {{<tspan class="key">Contributed</tspan>: <tspan class="value">56</tspan>}} | <tspan class="key">Stars</tspan>:<tspan class="cc"> ........... </tspan><tspan class="value">5</tspan>',
+        f'<tspan x="470" y="470" class="cc">. </tspan><tspan class="key">Repos</tspan>:<tspan class="cc"> .... </tspan><tspan class="value">48</tspan> {{<tspan class="key">Contributed</tspan>: <tspan class="value">56</tspan>}} | <tspan class="key">Stars</tspan>:<tspan class="cc"> ........... </tspan><tspan class="value">5</tspan>',
         # 23 (y=490)
-        f'<tspan x="390" y="490" class="cc">. </tspan><tspan class="key">Commits</tspan>:<tspan class="cc"> ................. </tspan><tspan class="value">680+</tspan> | <tspan class="key">Followers</tspan>:<tspan class="cc"> ....... </tspan><tspan class="value">9</tspan>',
+        f'<tspan x="470" y="490" class="cc">. </tspan><tspan class="key">Commits</tspan>:<tspan class="cc"> ................. </tspan><tspan class="value">680+</tspan> | <tspan class="key">Followers</tspan>:<tspan class="cc"> ....... </tspan><tspan class="value">9</tspan>',
         # 24 (y=510)
-        f'<tspan x="390" y="510" class="cc">. </tspan><tspan class="key">Lines of Code on GitHub</tspan>:<tspan class="cc">. </tspan><tspan class="value">184,320</tspan> ( <tspan class="addColor">212,450</tspan><tspan class="addColor">++</tspan>, <tspan class="delColor">28,130</tspan><tspan class="delColor">--</tspan> )'
+        f'<tspan x="470" y="510" class="cc">. </tspan><tspan class="key">Lines of Code on GitHub</tspan>:<tspan class="cc">. </tspan><tspan class="value">184,320</tspan> ( <tspan class="addColor">212,450</tspan><tspan class="addColor">++</tspan>, <tspan class="delColor">28,130</tspan><tspan class="delColor">--</tspan> )'
     ]
     right_block = "\n".join(right_tspans)
-    
+
     svg = f"""<?xml version='1.0' encoding='UTF-8'?>
-<svg xmlns="http://www.w3.org/2000/svg" font-family="ConsolasFallback,Consolas,monospace" width="985px" height="530px" font-size="16px">
+<svg xmlns="http://www.w3.org/2000/svg" font-family="ConsolasFallback,Consolas,monospace" width="1080px" height="548px" font-size="16px">
 <style>
 @font-face {{
 src: local('Consolas'), local('Consolas Bold');
@@ -141,39 +234,40 @@ size-adjust: 109%;
 .delColor {{fill: {del_color};}}
 .cc {{fill: {dot_color};}}
 text, tspan {{white-space: pre;}}
+{ascii_css}
 </style>
-<rect width="985px" height="530px" fill="{bg_color}" stroke="{border_color}" stroke-width="1.5" rx="15"/>
-<text x="15" y="30" fill="{text_color}" class="ascii">
+<rect width="1080px" height="548px" fill="{bg_color}" stroke="{border_color}" stroke-width="1.5" rx="15"/>
 {ascii_block}
-</text>
-<text x="390" y="30" fill="{text_color}">
+<text x="470" y="30" fill="{text_color}">
 {right_block}
 </text>
 </svg>"""
     return svg
 
+
+def render_preview(svg_name, png_name):
+    edge_path = r'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe'
+    if not os.path.exists(edge_path):
+        return
+    cwd = os.getcwd()
+    svg_url = f'file:///{cwd}/assets/{svg_name}'.replace('\\', '/')
+    out_png = f'--screenshot={cwd}\\assets\\{png_name}'
+    cmd = [edge_path, '--headless', '--disable-gpu', out_png, '--window-size=1120,600', svg_url]
+    subprocess.run(cmd, capture_output=True, text=True)
+    print(f"assets/{png_name} generated!")
+
+
 def main():
     os.makedirs("assets", exist_ok=True)
-    
-    dark_svg = create_svg("dark")
-    with open("assets/dark_mode.svg", "w", encoding="utf-8") as f:
-        f.write(dark_svg)
-    print("assets/dark_mode.svg created!")
-    
-    light_svg = create_svg("light")
-    with open("assets/light_mode.svg", "w", encoding="utf-8") as f:
-        f.write(light_svg)
-    print("assets/light_mode.svg created!")
 
-    # Render preview image
-    edge_path = r'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe'
-    if os.path.exists(edge_path):
-        cwd = os.getcwd()
-        svg_url = f'file:///{cwd}/assets/dark_mode.svg'.replace('\\', '/')
-        out_png = f'--screenshot={cwd}\\assets\\preview.png'
-        cmd = [edge_path, '--headless', '--disable-gpu', out_png, '--window-size=1020,580', svg_url]
-        subprocess.run(cmd, capture_output=True, text=True)
-        print("assets/preview.png generated!")
+    for mode in ("dark", "light"):
+        with open(f"assets/{mode}_mode.svg", "w", encoding="utf-8") as f:
+            f.write(create_svg(mode))
+        print(f"assets/{mode}_mode.svg created!")
+
+    render_preview("dark_mode.svg", "preview.png")
+    render_preview("light_mode.svg", "preview_light.png")
+
 
 if __name__ == "__main__":
     main()
