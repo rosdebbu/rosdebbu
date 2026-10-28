@@ -11,10 +11,12 @@ from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageOps
 # -------------------------------------------------------------
 PHOTO = os.path.join("assets", "profile.jpg")
 CROP = (860, 300, 1410, 985)   # head, neck and shoulders, in original photo pixels
-COLS = 104                      # characters per row
+COLS = 128                      # characters per row
 CELL_W, CELL_H = 4.0, 8.0       # px per character cell (font-size 7px)
 RAMP = " .`'^\",:;Il!i><~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"  # light -> dense
-PALETTE_SIZE = 48
+PALETTE_SIZE = 64
+CARD_W, CARD_H = 1150, 672      # card size in px
+RX = 550                        # left edge of the info column
 
 
 def load_portrait():
@@ -85,13 +87,13 @@ def build_ascii(is_dark):
             lum, (r, g, b), fade = CELLS[y][x]
             h, s, v = colorsys.rgb_to_hsv(r / 255, g / 255, b / 255)
             if is_dark:
-                v = 0.78 + 0.22 * v
-                d = (0.12 + 0.88 * lum ** 0.9) * fade
-                s *= 0.6
+                v = 0.55 + 0.45 * lum ** 0.8
+                d = (0.18 + 0.82 * lum ** 0.85) * fade
+                s *= 0.7
             else:
-                v = 0.12 + 0.48 * v
+                v = 0.10 + 0.55 * lum ** 0.8
                 d = (0.1 + 0.9 * (1 - lum) ** 0.9) * fade
-                s *= 0.85
+                s *= 0.9
             colours.putpixel((x, y), tuple(int(c * 255) for c in colorsys.hsv_to_rgb(h, min(1, s), v)))
             drow.append(d)
         dens.append(drow)
@@ -102,7 +104,7 @@ def build_ascii(is_dark):
         f".c{i}{{fill:#{pal[i*3]:02x}{pal[i*3+1]:02x}{pal[i*3+2]:02x};}}" for i in range(PALETTE_SIZE)
     )
 
-    top = (548 - ROWS * CELL_H) / 2 + CELL_H - 2
+    top = (CARD_H - ROWS * CELL_H) / 2 + CELL_H - 2
     width = COLS * CELL_W
     lines = []
     for y in range(ROWS):
@@ -153,7 +155,7 @@ def create_svg(mode="dark"):
         dots = " " + ("." * (dot_count - 2)) + " "
         safe_key = html.escape(key)
         safe_val = html.escape(val)
-        return (f'<tspan x="470" y="{y}" class="cc">. </tspan>'
+        return (f'<tspan x="550" y="{y}" class="cc">. </tspan>'
                 f'<tspan class="key">{safe_key}</tspan>:'
                 f'<tspan class="cc">{dots}</tspan>'
                 f'<tspan class="value">{safe_val}</tspan>')
@@ -162,7 +164,7 @@ def create_svg(mode="dark"):
         rem = target_cols - len(title) - 1
         dashes = " " + (char * max(4, rem))
         safe_title = html.escape(title)
-        return f'<tspan x="470" y="{y}">{safe_title}</tspan><tspan class="cc">{dashes}</tspan>'
+        return f'<tspan x="550" y="{y}">{safe_title}</tspan><tspan class="cc">{dashes}</tspan>'
 
     right_tspans = [
         # 0 (y=30)
@@ -178,7 +180,7 @@ def create_svg(mode="dark"):
         # 5 (y=130)
         build_kv(130, "IDE", "VS Code, Neovim, Cursor"),
         # 6 (y=150)
-        '<tspan x="470" y="150" class="cc">. </tspan>',
+        '<tspan x="550" y="150" class="cc">. </tspan>',
         # 7 (y=170)
         build_kv(170, "Languages.Programming", "TypeScript, Python, C++, Bash"),
         # 8 (y=190)
@@ -186,7 +188,7 @@ def create_svg(mode="dark"):
         # 9 (y=210)
         build_kv(210, "Languages.Real", "English, Bengali, Hindi"),
         # 10 (y=230)
-        '<tspan x="470" y="230" class="cc">. </tspan>',
+        '<tspan x="550" y="230" class="cc">. </tspan>',
         # 11 (y=250)
         build_kv(250, "Frameworks.FullStack", "React 19, Next.js, FastAPI, Node.js"),
         # 12 (y=270)
@@ -206,20 +208,20 @@ def create_svg(mode="dark"):
         # 19 (y=410)
         build_kv(410, "GitHub", "rosdebbu"),
         # 20 (y=430)
-        '<tspan x="470" y="430" class="cc">. </tspan>',
+        '<tspan x="550" y="430" class="cc">. </tspan>',
         # 21 (y=450)
         build_header(450, "- GitHub Stats", "-"),
         # 22 (y=470)
-        f'<tspan x="470" y="470" class="cc">. </tspan><tspan class="key">Repos</tspan>:<tspan class="cc"> .... </tspan><tspan class="value">48</tspan> {{<tspan class="key">Contributed</tspan>: <tspan class="value">56</tspan>}} | <tspan class="key">Stars</tspan>:<tspan class="cc"> ........... </tspan><tspan class="value">5</tspan>',
+        f'<tspan x="550" y="470" class="cc">. </tspan><tspan class="key">Repos</tspan>:<tspan class="cc"> .... </tspan><tspan class="value">48</tspan> {{<tspan class="key">Contributed</tspan>: <tspan class="value">56</tspan>}} | <tspan class="key">Stars</tspan>:<tspan class="cc"> ........... </tspan><tspan class="value">5</tspan>',
         # 23 (y=490)
-        f'<tspan x="470" y="490" class="cc">. </tspan><tspan class="key">Commits</tspan>:<tspan class="cc"> ................. </tspan><tspan class="value">680+</tspan> | <tspan class="key">Followers</tspan>:<tspan class="cc"> ....... </tspan><tspan class="value">9</tspan>',
+        f'<tspan x="550" y="490" class="cc">. </tspan><tspan class="key">Commits</tspan>:<tspan class="cc"> ................. </tspan><tspan class="value">680+</tspan> | <tspan class="key">Followers</tspan>:<tspan class="cc"> ....... </tspan><tspan class="value">9</tspan>',
         # 24 (y=510)
-        f'<tspan x="470" y="510" class="cc">. </tspan><tspan class="key">Lines of Code on GitHub</tspan>:<tspan class="cc">. </tspan><tspan class="value">184,320</tspan> ( <tspan class="addColor">212,450</tspan><tspan class="addColor">++</tspan>, <tspan class="delColor">28,130</tspan><tspan class="delColor">--</tspan> )'
+        f'<tspan x="550" y="510" class="cc">. </tspan><tspan class="key">Lines of Code on GitHub</tspan>:<tspan class="cc">. </tspan><tspan class="value">184,320</tspan> ( <tspan class="addColor">212,450</tspan><tspan class="addColor">++</tspan>, <tspan class="delColor">28,130</tspan><tspan class="delColor">--</tspan> )'
     ]
     right_block = "\n".join(right_tspans)
 
     svg = f"""<?xml version='1.0' encoding='UTF-8'?>
-<svg xmlns="http://www.w3.org/2000/svg" font-family="ConsolasFallback,Consolas,monospace" width="1080px" height="548px" font-size="16px">
+<svg xmlns="http://www.w3.org/2000/svg" font-family="ConsolasFallback,Consolas,monospace" width="{CARD_W}px" height="{CARD_H}px" font-size="16px">
 <style>
 @font-face {{
 src: local('Consolas'), local('Consolas Bold');
@@ -236,13 +238,61 @@ size-adjust: 109%;
 text, tspan {{white-space: pre;}}
 {ascii_css}
 </style>
-<rect width="1080px" height="548px" fill="{bg_color}" stroke="{border_color}" stroke-width="1.5" rx="15"/>
+<rect width="{CARD_W}px" height="{CARD_H}px" fill="{bg_color}" stroke="{border_color}" stroke-width="1.5" rx="15"/>
 {ascii_block}
-<text x="470" y="30" fill="{text_color}">
+<text x="550" y="30" fill="{text_color}" transform="translate(0,{(CARD_H - 540) // 2})">
 {right_block}
 </text>
 </svg>"""
     return svg
+
+
+TYPING_LINES = ["Full Stack Developer", "Systems & Data Science", "GNN Researcher", "Building & Shipping"]
+
+
+def build_typing_svg():
+    """Self-hosted typing animation (SMIL), so the profile has no external dependency."""
+    w, h, fs = 700, 60, 26
+    cw = fs * 0.6                      # monospace advance
+    n = len(TYPING_LINES)
+    typing, hold, erase = 0.40 / n, 0.45 / n, 0.10 / n   # fractions of the whole cycle
+    dur = 3.6 * n
+
+    parts = []
+    for i, line in enumerate(TYPING_LINES):
+        tw = len(line) * cw
+        x0 = (w - tw) / 2
+        a = i / n
+        t1, t2, t3 = a + typing, a + typing + hold, a + typing + hold + erase
+        times = ([0.0] if a == 0 else [0.0, a]) + [t1, t2, t3, 1.0]
+        widths = ([0] if a == 0 else [0, 0]) + [tw, tw, 0, 0]
+        xs = ([x0] if a == 0 else [x0, x0]) + [x0 + tw, x0 + tw, x0, x0]
+        fmt = lambda seq: ";".join(f"{v:.4f}".rstrip("0").rstrip(".") for v in seq)
+        # cursor is visible from the slot start until the line has been erased
+        ctimes = ([0.0, t3] if a == 0 else [0.0, a, t3])
+        cvals = ([1, 0] if a == 0 else [0, 1, 0])
+        parts.append(f"""  <clipPath id="clip{i}">
+    <rect x="{x0:.1f}" y="0" width="0" height="{h}">
+      <animate attributeName="width" dur="{dur}s" repeatCount="indefinite" keyTimes="{fmt(times)}" values="{fmt(widths)}"/>
+    </rect>
+  </clipPath>
+  <text x="{x0:.1f}" y="{h / 2 + fs * 0.35:.1f}" textLength="{tw:.1f}" lengthAdjust="spacingAndGlyphs" class="t" clip-path="url(#clip{i})">{html.escape(line)}</text>
+  <rect y="{h / 2 - fs * 0.62:.1f}" width="3" height="{fs * 1.2:.1f}" rx="1" class="cur" opacity="0">
+    <animate attributeName="x" dur="{dur}s" repeatCount="indefinite" keyTimes="{fmt(times)}" values="{fmt(xs)}"/>
+    <animate attributeName="opacity" dur="{dur}s" repeatCount="indefinite" calcMode="discrete" keyTimes="{fmt(ctimes)}" values="{fmt(cvals)}"/>
+  </rect>""")
+
+    body = "\n".join(parts)
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-label="{html.escape(', '.join(TYPING_LINES))}">
+  <title>{html.escape(' · '.join(TYPING_LINES))}</title>
+  <style>
+    text {{ font-family: 'Fira Code', Consolas, 'Cascadia Mono', Menlo, monospace; font-size: {fs}px; font-weight: 500; }}
+    .t {{ fill: #0969da; }}
+    .cur {{ fill: #8250df; }}
+    @media (prefers-color-scheme: dark) {{ .t {{ fill: #22d3ee; }} .cur {{ fill: #a78bfa; }} }}
+  </style>
+{body}
+</svg>"""
 
 
 def render_preview(svg_name, png_name):
@@ -252,7 +302,9 @@ def render_preview(svg_name, png_name):
     cwd = os.getcwd()
     svg_url = f'file:///{cwd}/assets/{svg_name}'.replace('\\', '/')
     out_png = f'--screenshot={cwd}\\assets\\{png_name}'
-    cmd = [edge_path, '--headless', '--disable-gpu', out_png, '--window-size=1120,600', svg_url]
+    profile = os.path.join(os.environ.get("TEMP", "."), "edge_preview_profile")
+    cmd = [edge_path, '--headless', '--disable-gpu', f'--user-data-dir={profile}', out_png,
+           '--window-size=1190,720', svg_url]
     subprocess.run(cmd, capture_output=True, text=True)
     print(f"assets/{png_name} generated!")
 
@@ -260,13 +312,16 @@ def render_preview(svg_name, png_name):
 def main():
     os.makedirs("assets", exist_ok=True)
 
-    for mode in ("dark", "light"):
+    for mode in ("dark",):  # one dark terminal card looks right on light and dark pages
         with open(f"assets/{mode}_mode.svg", "w", encoding="utf-8") as f:
             f.write(create_svg(mode))
         print(f"assets/{mode}_mode.svg created!")
 
+    with open("assets/typing.svg", "w", encoding="utf-8") as f:
+        f.write(build_typing_svg())
+    print("assets/typing.svg created!")
+
     render_preview("dark_mode.svg", "preview.png")
-    render_preview("light_mode.svg", "preview_light.png")
 
 
 if __name__ == "__main__":

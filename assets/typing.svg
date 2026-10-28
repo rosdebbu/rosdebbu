@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="60" viewBox="0 0 700 60" role="img" aria-label="Full Stack Developer, Systems &amp; Data Science, GNN Researcher, Building &amp; Shipping">
+  <title>Full Stack Developer · Systems &amp; Data Science · GNN Researcher · Building &amp; Shipping</title>
+  <style>
+    text { font-family: 'Fira Code', Consolas, 'Cascadia Mono', Menlo, monospace; font-size: 26px; font-weight: 500; }
+    .t { fill: #0969da; }
+    .cur { fill: #8250df; }
+    @media (prefers-color-scheme: dark) { .t { fill: #22d3ee; } .cur { fill: #a78bfa; } }
+  </style>
+  <clipPath id="clip0">
+    <rect x="194.0" y="0" width="0" height="60">
+      <animate attributeName="width" dur="14.4s" repeatCount="indefinite" keyTimes="0;0.1;0.2125;0.2375;1" values="0;312;312;0;0"/>
+    </rect>
+  </clipPath>
+  <text x="194.0" y="39.1" textLength="312.0" lengthAdjust="spacingAndGlyphs" class="t" clip-path="url(#clip0)">Full Stack Developer</text>
+  <rect y="13.9" width="3" height="31.2" rx="1" class="cur" opacity="0">
+    <animate attributeName="x" dur="14.4s" repeatCount="indefinite" keyTimes="0;0.1;0.2125;0.2375;1" values="194;506;506;194;194"/>
+    <animate attributeName="opacity" dur="14.4s" repeatCount="indefinite" calcMode="discrete" keyTimes="0;0.2375" values="1;0"/>
+  </rect>
+  <clipPath id="clip1">
+    <rect x="178.4" y="0" width="0" height="60">
+      <animate attributeName="width" dur="14.4s" repeatCount="indefinite" keyTimes="0;0.25;0.35;0.4625;0.4875;1" values="0;0;343.2;343.2;0;0"/>
+    </rect>
+  </clipPath>
+  <text x="178.4" y="39.1" textLength="343.2" lengthAdjust="spacingAndGlyphs" class="t" clip-path="url(#clip1)">Systems &amp; Data Science</text>
+  <rect y="13.9" width="3" height="31.2" rx="1" class="cur" opacity="0">
+    <animate attributeName="x" dur="14.4s" repeatCount="indefinite" keyTimes="0;0.25;0.35;0.4625;0.4875;1" values="178.4;178.4;521.6;521.6;178.4;178.4"/>
+    <animate attributeName="opacity" dur="14.4s" repeatCount="indefinite" calcMode="discrete" keyTimes="0;0.25;0.4875" values="0;1;0"/>
+  </rect>
+  <clipPath id="clip2">
+    <rect x="240.8" y="0" width="0" height="60">
+      <animate attributeName="width" dur="14.4s" repeatCount="indefinite" keyTimes="0;0.5;0.6;0.7125;0.7375;1" values="0;0;218.4;218.4;0;0"/>
+    </rect>
+  </clipPath>
+  <text x="240.8" y="39.1" textLength="218.4" lengthAdjust="spacingAndGlyphs" class="t" clip-path="url(#clip2)">GNN Researcher</text>
+  <rect y="13.9" width="3" height="31.2" rx="1" class="cur" opacity="0">
+    <animate attributeName="x" dur="14.4s" repeatCount="indefinite" keyTimes="0;0.5;0.6;0.7125;0.7375;1" values="240.8;240.8;459.2;459.2;240.8;240.8"/>
+    <animate attributeName="opacity" dur="14.4s" repeatCount="indefinite" calcMode="discrete" keyTimes="0;0.5;0.7375" values="0;1;0"/>
+  </rect>
+  <clipPath id="clip3">
+    <rect x="201.8" y="0" width="0" height="60">
+      <animate attributeName="width" dur="14.4s" repeatCount="indefinite" keyTimes="0;0.75;0.85;0.9625;0.9875;1" values="0;0;296.4;296.4;0;0"/>
+    </rect>
+  </clipPath>
+  <text x="201.8" y="39.1" textLength="296.4" lengthAdjust="spacingAndGlyphs" class="t" clip-path="url(#clip3)">Building &amp; Shipping</text>
+  <rect y="13.9" width="3" height="31.2" rx="1" class="cur" opacity="0">
+    <animate attributeName="x" dur="14.4s" repeatCount="indefinite" keyTimes="0;0.75;0.85;0.9625;0.9875;1" values="201.8;201.8;498.2;498.2;201.8;201.8"/>
+    <animate attributeName="opacity" dur="14.4s" repeatCount="indefinite" calcMode="discrete" keyTimes="0;0.75;0.9875" values="0;1;0"/>
+  </rect>
+</svg>
