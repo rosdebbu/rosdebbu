@@ -43,19 +43,42 @@ def rich(s):
     return "".join(f'<tspan class="val">{esc(p)}</tspan>' if i % 2 else esc(p) for i, p in enumerate(s.split("**")))
 
 
-def header(title):
+def header(title, w=W):
     x = 30 + len(title) * CW + 12
     return (f'<text x="30" y="44">{esc(title)}</text>'
-            f'<line x1="{x:.0f}" y1="39" x2="{W - 30}" y2="39" stroke="{DIM}" stroke-dasharray="2 5" stroke-linecap="round"/>')
+            f'<line x1="{x:.0f}" y1="39" x2="{w - 30}" y2="39" stroke="{DIM}" stroke-dasharray="2 5" stroke-linecap="round"/>')
 
 
-def card(h, body, label):
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{h}" viewBox="0 0 {W} {h}" font-size="16px" font-family="ConsolasFallback,Consolas,monospace" role="img" aria-label="{esc(label)}">
+def card(h, body, label, w=W, head=True):
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" font-size="16px" font-family="ConsolasFallback,Consolas,monospace" role="img" aria-label="{esc(label)}">
 <style>{STYLE}</style>
-<rect x=".75" y=".75" width="{W - 1.5}" height="{h - 1.5}" rx="15" fill="{BG}" stroke="{BORDER}" stroke-width="1.5"/>
-{header(label.split(' — ')[0])}
+<rect x=".75" y=".75" width="{w - 1.5}" height="{h - 1.5}" rx="15" fill="{BG}" stroke="{BORDER}" stroke-width="1.5"/>
+{header(label.split(' — ')[0], w) if head else ''}
 {body}
 </svg>"""
+
+
+PORTFOLIO = "debjitttt-ross.vercel.app"
+
+
+def portfolio():
+    body = (f'<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a78bfa"/>'
+            f'<stop offset="1" stop-color="#22d3ee"/></linearGradient></defs>'
+            f'<text x="30" y="86" class="dim">$ open portfolio</text>'
+            f'<text x="30" y="136" class="val b" font-size="36px">{PORTFOLIO}</text>'
+            f'<text x="30" y="170" class="lg">Debjit Das — Portfolio · <tspan class="key">projects</tspan>, '
+            f'<tspan class="key">research</tspan> and <tspan class="key">experiments</tspan></text>'
+            f'<rect x="{W - 290}" y="96" width="260" height="56" rx="12" fill="url(#g)"/>'
+            f'<text x="{W - 160}" y="131" text-anchor="middle" class="b lg" style="fill:#0d1117">Visit portfolio -&gt;</text>')
+    return card(206, body, "portfolio — Debjit Das")
+
+
+def tile(kind, handle, accent, hint):
+    body = (f'<rect x="24" y="26" width="4" height="64" rx="2" fill="{accent}"/>'
+            f'<text x="44" y="42" class="dim">// {kind}</text>'
+            f'<text x="44" y="70" class="val b lg">{esc(handle)}</text>'
+            f'<text x="44" y="94" class="dim">{hint} -&gt;</text>')
+    return card(116, body, f"{kind} — {handle}", w=366, head=False)
 
 
 def chips(items, x, y):
@@ -157,7 +180,13 @@ def stats():
 
 
 if __name__ == "__main__":
-    for name, fn in [("about", about), ("building", building), ("stack", stack), ("research", research), ("stats", stats)]:
+    for kind, handle, accent, hint in [("linkedin", "debjit-das-6b0452327", "#58a6ff", "connect"),
+                                       ("leetcode", "debbjitttt", "#ffa116", "see my solves"),
+                                       ("email", "debjitsince90908@gmail.com", "#ea4335", "get in touch")]:
+        with open(f"assets/link_{kind}.svg", "w", encoding="utf-8") as f:
+            f.write(tile(kind, handle, accent, hint))
+        print(f"assets/link_{kind}.svg created!")
+    for name, fn in [("portfolio", portfolio), ("about", about), ("building", building), ("stack", stack), ("research", research), ("stats", stats)]:
         with open(f"assets/{name}.svg", "w", encoding="utf-8") as f:
             f.write(fn())
         print(f"assets/{name}.svg created!")

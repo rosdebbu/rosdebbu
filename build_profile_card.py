@@ -204,7 +204,7 @@ def create_svg(mode="dark"):
         # 17 (y=370)
         build_kv(370, "LeetCode", "debbjitttt"),
         # 18 (y=390)
-        build_kv(390, "Portfolio", "vib3withsimran"),
+        build_kv(390, "Portfolio", "debjitttt-ross.vercel.app"),
         # 19 (y=410)
         build_kv(410, "GitHub", "rosdebbu"),
         # 20 (y=430)

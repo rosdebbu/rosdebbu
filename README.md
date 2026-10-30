@@ -9,10 +9,15 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/vib3withsimran/vib3withsimran"><img src="https://img.shields.io/badge/Portfolio-vib3withsimran-7952d8?style=for-the-badge&logo=github&logoColor=white" alt="Portfolio"/></a>
-  <a href="https://www.linkedin.com/in/debjit-das-6b0452327/"><img src="https://img.shields.io/badge/LinkedIn-Debjit_Das-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/></a>
-  <a href="https://leetcode.com/u/debbjitttt/"><img src="https://img.shields.io/badge/LeetCode-debbjitttt-FFA116?style=for-the-badge&logo=leetcode&logoColor=black" alt="LeetCode"/></a>
-  <a href="mailto:debjitsince90908@gmail.com"><img src="https://img.shields.io/badge/Email-Get_in_touch-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/></a>
+  <a href="https://debjitttt-ross.vercel.app/">
+    <img src="./assets/portfolio.svg" width="100%" alt="Portfolio: debjitttt-ross.vercel.app — Debjit Das, projects, research and experiments. Visit portfolio.">
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://www.linkedin.com/in/debjit-das-6b0452327/"><img src="./assets/link_linkedin.svg" width="32%" alt="LinkedIn: debjit-das-6b0452327"></a>
+  <a href="https://leetcode.com/u/debbjitttt/"><img src="./assets/link_leetcode.svg" width="32%" alt="LeetCode: debbjitttt"></a>
+  <a href="mailto:debjitsince90908@gmail.com"><img src="./assets/link_email.svg" width="32%" alt="Email: debjitsince90908@gmail.com"></a>
 </p>
 
 <p align="center">
