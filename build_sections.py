@@ -61,24 +61,12 @@ def card(h, body, label, w=W, head=True):
 PORTFOLIO = "debjitttt-ross.vercel.app"
 
 
-def portfolio():
-    body = (f'<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a78bfa"/>'
-            f'<stop offset="1" stop-color="#22d3ee"/></linearGradient></defs>'
-            f'<text x="30" y="86" class="dim">$ open portfolio</text>'
-            f'<text x="30" y="136" class="val b" font-size="36px">{PORTFOLIO}</text>'
-            f'<text x="30" y="170" class="lg">Debjit Das — Portfolio · <tspan class="key">projects</tspan>, '
-            f'<tspan class="key">research</tspan> and <tspan class="key">experiments</tspan></text>'
-            f'<rect x="{W - 290}" y="96" width="260" height="56" rx="12" fill="url(#g)"/>'
-            f'<text x="{W - 160}" y="131" text-anchor="middle" class="b lg" style="fill:#0d1117">Visit portfolio -&gt;</text>')
-    return card(206, body, "portfolio — Debjit Das")
-
-
 def tile(kind, handle, accent, hint):
-    body = (f'<rect x="24" y="26" width="4" height="64" rx="2" fill="{accent}"/>'
-            f'<text x="44" y="42" class="dim">// {kind}</text>'
-            f'<text x="44" y="70" class="val b lg">{esc(handle)}</text>'
-            f'<text x="44" y="94" class="dim">{hint} -&gt;</text>')
-    return card(116, body, f"{kind} — {handle}", w=366, head=False)
+    body = (f'<rect x="22" y="26" width="4" height="64" rx="2" fill="{accent}"/>'
+            f'<text x="40" y="42" class="dim">// {kind}</text>'
+            f'<text x="40" y="68" class="val b" font-size="14px">{esc(handle)}</text>'
+            f'<text x="40" y="94" class="dim">{hint} -&gt;</text>')
+    return card(116, body, f"{kind} — {handle}", w=280, head=False)
 
 
 def chips(items, x, y):
@@ -180,13 +168,14 @@ def stats():
 
 
 if __name__ == "__main__":
-    for kind, handle, accent, hint in [("linkedin", "debjit-das-6b0452327", "#58a6ff", "connect"),
+    for kind, handle, accent, hint in [("portfolio", PORTFOLIO, "#a78bfa", "visit site"),
+                                       ("linkedin", "debjit-das-6b0452327", "#58a6ff", "connect"),
                                        ("leetcode", "debbjitttt", "#ffa116", "see my solves"),
                                        ("email", "debjitsince90908@gmail.com", "#ea4335", "get in touch")]:
         with open(f"assets/link_{kind}.svg", "w", encoding="utf-8") as f:
             f.write(tile(kind, handle, accent, hint))
         print(f"assets/link_{kind}.svg created!")
-    for name, fn in [("portfolio", portfolio), ("about", about), ("building", building), ("stack", stack), ("research", research), ("stats", stats)]:
+    for name, fn in [("about", about), ("building", building), ("stack", stack), ("research", research), ("stats", stats)]:
         with open(f"assets/{name}.svg", "w", encoding="utf-8") as f:
             f.write(fn())
         print(f"assets/{name}.svg created!")

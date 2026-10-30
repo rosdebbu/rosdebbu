@@ -9,15 +9,10 @@
 </p>
 
 <p align="center">
-  <a href="https://debjitttt-ross.vercel.app/">
-    <img src="./assets/portfolio.svg" width="100%" alt="Portfolio: debjitttt-ross.vercel.app — Debjit Das, projects, research and experiments. Visit portfolio.">
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://www.linkedin.com/in/debjit-das-6b0452327/"><img src="./assets/link_linkedin.svg" width="32%" alt="LinkedIn: debjit-das-6b0452327"></a>
-  <a href="https://leetcode.com/u/debbjitttt/"><img src="./assets/link_leetcode.svg" width="32%" alt="LeetCode: debbjitttt"></a>
-  <a href="mailto:debjitsince90908@gmail.com"><img src="./assets/link_email.svg" width="32%" alt="Email: debjitsince90908@gmail.com"></a>
+  <a href="https://debjitttt-ross.vercel.app/"><img src="./assets/link_portfolio.svg" width="24%" alt="Portfolio: debjitttt-ross.vercel.app"></a>
+  <a href="https://www.linkedin.com/in/debjit-das-6b0452327/"><img src="./assets/link_linkedin.svg" width="24%" alt="LinkedIn: debjit-das-6b0452327"></a>
+  <a href="https://leetcode.com/u/debbjitttt/"><img src="./assets/link_leetcode.svg" width="24%" alt="LeetCode: debbjitttt"></a>
+  <a href="mailto:debjitsince90908@gmail.com"><img src="./assets/link_email.svg" width="24%" alt="Email: debjitsince90908@gmail.com"></a>
 </p>
 
 <p align="center">
@@ -36,6 +31,18 @@
 
 <p align="center">
   <img src="./assets/research.svg" width="100%" alt="Research and systems: Graph Neural Networks, ESP32 smart sensing, and computational fluid dynamics with OpenFOAM.">
+</p>
+
+<p align="center">
+  <img src="./profile-3d-contrib/profile-green-animate.svg" width="100%" alt="3D contribution calendar for rosdebbu">
+</p>
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/rosdebbu/rosdebbu/output/github-snake-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/rosdebbu/rosdebbu/output/github-snake.svg">
+    <img alt="Snake eating the contribution graph" src="https://raw.githubusercontent.com/rosdebbu/rosdebbu/output/github-snake-dark.svg" width="100%">
+  </picture>
 </p>
 
 <p align="center">
