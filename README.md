@@ -33,6 +33,8 @@
   <img src="./assets/research.svg" width="100%" alt="Research and systems: Graph Neural Networks, ESP32 smart sensing, and computational fluid dynamics with OpenFOAM.">
 </p>
 
+<h2 align="center"><code>~/</code> contribution calendar</h2>
+
 <p align="center">
   <img src="./profile-3d-contrib/profile-green-animate.svg" width="100%" alt="3D contribution calendar for rosdebbu">
 </p>
